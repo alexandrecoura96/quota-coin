@@ -1,5 +1,4 @@
-import React, {useCallback, useState} from 'react';
-import {Keyboard} from 'react-native';
+import React from 'react';
 import {FlatList, TouchableWithoutFeedback} from 'react-native-gesture-handler';
 import {CoinListItem} from '../../components/CoinListItem';
 import {PriceVariation} from '../../components/PriceVariation';
@@ -7,27 +6,13 @@ import {SearchBar} from '../../components/SearchBar';
 import {Container} from './styles';
 import {HomeViewProps} from './types';
 
-export const View = ({data}: HomeViewProps) => {
-  const [filteredData, setFilteredData] = useState(data);
-
-  const handleSearch = (text: string) => {
-    const filtered = data?.filter(
-      item =>
-        item.name.toLowerCase().includes(text.toLowerCase()) ||
-        item.symbol.toLowerCase().includes(text.toLowerCase()),
-    );
-
-    setFilteredData(filtered);
-  };
-
-  const onHandleKeyboardDismiss = useCallback(() => {
-    Keyboard.dismiss();
-  }, []);
-
+export const View = ({
+  filteredData,
+  handleSearch,
+  onHandleKeyboardDismiss,
+}: HomeViewProps) => {
   return (
-    <TouchableWithoutFeedback
-      onPress={onHandleKeyboardDismiss}
-      style={{backgroundColor: 'red'}}>
+    <TouchableWithoutFeedback onPress={onHandleKeyboardDismiss}>
       <Container>
         <SearchBar placeholder="Search crypto" onChangeText={handleSearch} />
       </Container>
