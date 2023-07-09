@@ -33,7 +33,9 @@ export const Ticker = styled.Text`
   color: #000;
 `;
 
-export const Name = styled.Text``;
+export const Name = styled.Text`
+  color: gray;
+`;
 
 export const Price = styled.Text`
   font-weight: 500;
