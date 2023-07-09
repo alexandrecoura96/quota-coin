@@ -6,7 +6,9 @@ export const Content = styled.View`
 
 export const Container = styled.View`
   background-color: #ffffff;
-  padding: 24px;
+  padding: 16px 24px;
+  gap: 24px;
+  align-items: center;
 `;
 
 export const Title = styled.Text`

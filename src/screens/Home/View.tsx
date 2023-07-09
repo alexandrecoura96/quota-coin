@@ -3,7 +3,7 @@ import {FlatList, TouchableWithoutFeedback} from 'react-native-gesture-handler';
 import {CoinListItem} from '../../components/CoinListItem';
 import {PriceVariation} from '../../components/PriceVariation';
 import {SearchBar} from '../../components/SearchBar';
-import {Container} from './styles';
+import {Container, Title} from './styles';
 import {HomeViewProps} from './types';
 
 export const View = ({
@@ -12,20 +12,20 @@ export const View = ({
   onHandleKeyboardDismiss,
 }: HomeViewProps) => {
   return (
-    <TouchableWithoutFeedback onPress={onHandleKeyboardDismiss}>
+    <TouchableWithoutFeedback
+      onPress={onHandleKeyboardDismiss}
+      style={{height: '100%', backgroundColor: '#fff'}}>
       <Container>
+        <Title>Crypto</Title>
         <SearchBar placeholder="Search crypto" onChangeText={handleSearch} />
       </Container>
       <FlatList
         data={filteredData}
         keyExtractor={item => item.id}
-        style={{backgroundColor: 'red'}}
-        // ListHeaderComponent={<Title>Crypto</Title>}
-        // ListHeaderComponentStyle={{alignItems: 'center'}}
+        showsVerticalScrollIndicator={false}
         contentContainerStyle={{
           paddingHorizontal: 24,
           backgroundColor: '#fff',
-          height: '100%',
         }}
         renderItem={({item}) => (
           <CoinListItem
