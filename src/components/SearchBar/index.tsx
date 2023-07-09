@@ -9,7 +9,7 @@ export const SearchBar = forwardRef(
     return (
       <Container>
         <SearchIcon height={24} width={24} />
-        <InputText ref={ref} {...props} />
+        <InputText placeholderTextColor="#000" ref={ref} {...props} />
       </Container>
     );
   },
