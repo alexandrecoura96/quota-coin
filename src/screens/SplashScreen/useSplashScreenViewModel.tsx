@@ -1,10 +1,21 @@
 import {useNavigation} from '@react-navigation/native';
-import {useEffect} from 'react';
+import {useContext, useEffect} from 'react';
+import {DataContext} from '../../components/DataProvider/View';
+import {NavigationType} from '../../models/useGetMarketCoins/types';
 
 export const useSplashScreenViewModel = () => {
-  const navigation = useNavigation();
+  const context = useContext(DataContext);
+  const {data, fetchMarketCoinsList} = context || {};
+  const navigation = useNavigation<NavigationType>();
 
   useEffect(() => {
-    setTimeout(() => navigation.navigate('Home'), 5000);
-  });
+    fetchMarketCoinsList && fetchMarketCoinsList();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
+  useEffect(() => {
+    if (data?.length) {
+      navigation.navigate('Home');
+    }
+  }, [data?.length, navigation]);
 };
