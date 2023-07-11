@@ -1,9 +1,10 @@
-import React from 'react';
-import {FlatList, TouchableWithoutFeedback} from 'react-native-gesture-handler';
+import React, {useCallback} from 'react';
+import {ListRenderItemInfo} from 'react-native';
 import {CoinListItem} from '../../components/CoinListItem';
 import {PriceVariation} from '../../components/PriceVariation';
 import {SearchBar} from '../../components/SearchBar';
-import {Container, Title} from './styles';
+import {DataType} from '../../models/useGetMarketCoins/types';
+import {Container, List, NotFounded, Title, Touchable} from './styles';
 import {HomeViewProps} from './types';
 
 export const View = ({
@@ -11,32 +12,36 @@ export const View = ({
   handleSearch,
   onHandleKeyboardDismiss,
 }: HomeViewProps) => {
+  const renderItem = useCallback(({item}: ListRenderItemInfo<DataType>) => {
+    return (
+      <CoinListItem
+        logo={item.image}
+        name={item.name}
+        ticker={item.symbol}
+        price={item.current_price}>
+        <PriceVariation variation={item.price_change_percentage_24h} />
+      </CoinListItem>
+    );
+  }, []);
+
   return (
-    <TouchableWithoutFeedback
-      onPress={onHandleKeyboardDismiss}
-      style={{height: '100%', backgroundColor: '#fff'}}>
-      <Container>
-        <Title>Crypto</Title>
-        <SearchBar placeholder="Search crypto" onChangeText={handleSearch} />
-      </Container>
-      <FlatList
-        data={filteredData}
-        keyExtractor={item => item.id}
-        showsVerticalScrollIndicator={false}
-        contentContainerStyle={{
-          paddingHorizontal: 24,
-          backgroundColor: '#fff',
-        }}
-        renderItem={({item}) => (
-          <CoinListItem
-            logo={item.image}
-            name={item.name}
-            ticker={item.symbol}
-            price={item.current_price}>
-            <PriceVariation variation={item.price_change_percentage_24h} />
-          </CoinListItem>
+    <Touchable onPress={onHandleKeyboardDismiss}>
+      <>
+        <Container>
+          <Title>Crypto</Title>
+          <SearchBar placeholder="Search crypto" onChangeText={handleSearch} />
+        </Container>
+        {filteredData?.length ? (
+          <List
+            data={filteredData}
+            keyExtractor={item => item.id}
+            showsVerticalScrollIndicator={false}
+            renderItem={renderItem}
+          />
+        ) : (
+          <NotFounded>Not founded</NotFounded>
         )}
-      />
-    </TouchableWithoutFeedback>
+      </>
+    </Touchable>
   );
 };
