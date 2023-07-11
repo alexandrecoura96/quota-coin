@@ -15,7 +15,7 @@ export const useSplashScreenViewModel = () => {
 
   useEffect(() => {
     if (data?.length) {
-      navigation.navigate('Home');
+      navigation.replace('Home');
     }
   }, [data?.length, navigation]);
 };
