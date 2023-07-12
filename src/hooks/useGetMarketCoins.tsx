@@ -1,11 +1,11 @@
 import {useState} from 'react';
-import {Alert} from 'react-native';
 import {DataType} from '../models/useGetMarketCoins/types';
 import {api} from '../services/api';
 
 export const useGetMarketCoins = () => {
   const [loading, setLoading] = useState(true);
   const [data, setData] = useState<Array<DataType> | null>(null);
+  const [page, setPage] = useState<number>(1);
   const [hasError, setHasError] = useState(false);
 
   const url =
@@ -13,14 +13,15 @@ export const useGetMarketCoins = () => {
 
   async function fetchMarketCoinsList() {
     try {
+      setHasError(false);
       const response = await api.get(url, {
-        params: {page: 1},
+        params: {page: page},
       });
       setData(response.data);
     } catch (error) {
+      console.log(error);
       setLoading(false);
       setHasError(true);
-      Alert.alert('Ops', 'Try again later');
     } finally {
       setLoading(false);
     }
@@ -31,5 +32,7 @@ export const useGetMarketCoins = () => {
     loading,
     fetchMarketCoinsList,
     hasError,
+    setPage,
+    page,
   };
 };
