@@ -1,3 +1,4 @@
+import numeral from 'numeral';
 import React from 'react';
 import {
   Container,
@@ -27,7 +28,7 @@ export function CoinListItem({
           <Name>{name}</Name>
         </PrimaryColumn>
         <SecondaryColumn>
-          <Price>{price}</Price>
+          <Price>{numeral(price).format('$0,0.00')}</Price>
           {children}
         </SecondaryColumn>
       </Content>

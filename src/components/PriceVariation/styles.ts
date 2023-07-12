@@ -11,6 +11,8 @@ export const Container = styled.View`
   gap: 4px;
 `;
 
-export const Variation = styled.Text<VariationType>`
+export const Variation = styled.Text.attrs({
+  numberOfLines: 1,
+})<VariationType>`
   color: ${props => (props.type === 'negative' ? '#E31B00' : '#00CB00')};
 `;

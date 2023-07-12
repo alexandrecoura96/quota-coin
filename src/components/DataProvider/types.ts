@@ -5,4 +5,5 @@ export interface DataContextValue {
   isLoading: boolean;
   hasError: boolean;
   fetchMarketCoinsList: () => Promise<void>;
+  setPage: React.Dispatch<React.SetStateAction<number>>;
 }

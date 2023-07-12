@@ -16,9 +16,12 @@ export const Content = styled.View`
   align-items: center;
 `;
 
-export const PrimaryColumn = styled.View``;
+export const PrimaryColumn = styled.View`
+  flex: 1;
+`;
 
 export const SecondaryColumn = styled.View`
+  flex: 1;
   align-items: flex-end;
 `;
 
@@ -27,20 +30,24 @@ export const Logo = styled.Image`
   width: 32px;
 `;
 
-export const Ticker = styled.Text`
+export const Ticker = styled.Text.attrs({
+  numberOfLines: 1,
+})`
   font-weight: 700;
   font-size: 20px;
   color: #000;
 `;
 
-export const Name = styled.Text`
+export const Name = styled.Text.attrs({
+  numberOfLines: 1,
+})`
   color: gray;
 `;
 
-export const Price = styled.Text`
+export const Price = styled.Text.attrs({
+  numberOfLines: 1,
+})`
   font-weight: 500;
   font-size: 20px;
   color: #000;
 `;
-
-export const Variation = styled.Text``;

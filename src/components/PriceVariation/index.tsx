@@ -1,3 +1,4 @@
+import numeral from 'numeral';
 import React from 'react';
 import ArrowDown from '../../assets/svgs/arrow_down.svg';
 import ArrowUp from '../../assets/svgs/arrow_up.svg';
@@ -19,10 +20,13 @@ export function PriceVariation({variation}: PriceVariationProps) {
       return 'negative';
     }
   };
+  console.log(variation);
   return (
     <Container>
       {Icon()[verifyVariation(variation)]}
-      <Variation type={verifyVariation(variation)}>{variation}</Variation>
+      <Variation type={verifyVariation(variation)}>
+        {numeral(variation / 100).format('0.00%')}
+      </Variation>
     </Container>
   );
 }
