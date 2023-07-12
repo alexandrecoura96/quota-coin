@@ -1,16 +1,28 @@
 import React, {useCallback} from 'react';
-import {ListRenderItemInfo} from 'react-native';
+import {ActivityIndicator, ListRenderItemInfo} from 'react-native';
 import {CoinListItem} from '../../components/CoinListItem';
+import {ErrorStatement} from '../../components/ErrorStatement';
 import {PriceVariation} from '../../components/PriceVariation';
 import {SearchBar} from '../../components/SearchBar';
 import {DataType} from '../../models/useGetMarketCoins/types';
-import {Container, List, NotFounded, Title, Touchable} from './styles';
+import {
+  Container,
+  List,
+  NotFounded,
+  StatementContainer,
+  Title,
+  Touchable,
+} from './styles';
 import {HomeViewProps} from './types';
 
 export const View = ({
   filteredData,
   handleSearch,
   onHandleKeyboardDismiss,
+  handleLoadMore,
+  onHandleTryAgain,
+  isLoading,
+  error,
 }: HomeViewProps) => {
   const renderItem = useCallback(({item}: ListRenderItemInfo<DataType>) => {
     return (
@@ -23,6 +35,22 @@ export const View = ({
       </CoinListItem>
     );
   }, []);
+
+  if (isLoading) {
+    return (
+      <StatementContainer>
+        <ActivityIndicator size={32} color="red" />
+      </StatementContainer>
+    );
+  }
+
+  if (error) {
+    return (
+      <StatementContainer>
+        <ErrorStatement onPress={onHandleTryAgain} />
+      </StatementContainer>
+    );
+  }
 
   return (
     <Touchable onPress={onHandleKeyboardDismiss}>
@@ -37,6 +65,7 @@ export const View = ({
             keyExtractor={item => item.id}
             showsVerticalScrollIndicator={false}
             renderItem={renderItem}
+            onEndReached={handleLoadMore}
           />
         ) : (
           <NotFounded>Not founded</NotFounded>

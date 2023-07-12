@@ -14,9 +14,18 @@ export const Container = styled.View`
   align-items: center;
 `;
 
+export const StatementContainer = styled.View`
+  flex: 1;
+  align-items: center;
+  justify-content: center;
+  background-color: #ffffff;
+  padding: 16px 24px;
+`;
+
 export const List = styled(FlatList).attrs({
   contentContainerStyle: {
     paddingHorizontal: 24,
+    paddingBottom: 60,
     backgroundColor: '#fff',
   },
 })`` as typeof FlatList;

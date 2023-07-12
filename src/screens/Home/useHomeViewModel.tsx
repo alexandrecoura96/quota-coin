@@ -4,7 +4,8 @@ import {DataContext} from '../../components/DataProvider/View';
 
 export const useHomeViewModel = () => {
   const context = useContext(DataContext);
-  const {data, hasError} = context || {};
+  const {data, hasError, setPage, isLoading, fetchMarketCoinsList} =
+    context || {};
   const [filteredData, setFilteredData] = useState(data);
 
   const handleSearch = useCallback(
@@ -20,9 +21,27 @@ export const useHomeViewModel = () => {
     [data],
   );
 
+  const handleLoadMore = useCallback(() => {
+    setPage && setPage((prevPage: number) => prevPage + 1);
+  }, [setPage]);
+
   const onHandleKeyboardDismiss = useCallback(() => {
     Keyboard.dismiss();
   }, []);
 
-  return {filteredData, hasError, handleSearch, onHandleKeyboardDismiss};
+  const onHandleTryAgain = useCallback(() => {
+    fetchMarketCoinsList && fetchMarketCoinsList();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
+  return {
+    filteredData,
+    hasError,
+    handleSearch,
+    onHandleKeyboardDismiss,
+    handleLoadMore,
+    isLoading,
+    error: hasError,
+    onHandleTryAgain,
+  };
 };
