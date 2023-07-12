@@ -43,13 +43,13 @@ export const Name = styled.Text.attrs({
   numberOfLines: 1,
 })`
   color: gray;
-  font-size: ${RFValue(16)} px;
+  font-size: ${RFValue(16)}px;
 `;
 
 export const Price = styled.Text.attrs({
   numberOfLines: 1,
 })`
   font-weight: 500;
-  font-size: ${RFValue(20)} px;
+  font-size: ${RFValue(20)}px;
   color: #000;
 `;
