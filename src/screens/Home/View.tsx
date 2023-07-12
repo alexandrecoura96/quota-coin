@@ -19,10 +19,10 @@ export const View = ({
   filteredData,
   handleSearch,
   onHandleKeyboardDismiss,
-  handleLoadMore,
   onHandleTryAgain,
   isLoading,
   error,
+  refreshControl,
 }: HomeViewProps) => {
   const renderItem = useCallback(({item}: ListRenderItemInfo<DataType>) => {
     return (
@@ -39,7 +39,7 @@ export const View = ({
   if (isLoading) {
     return (
       <StatementContainer>
-        <ActivityIndicator size={32} color="red" />
+        <ActivityIndicator size={32} color="#00C1C6" />
       </StatementContainer>
     );
   }
@@ -62,10 +62,12 @@ export const View = ({
         {filteredData?.length ? (
           <List
             data={filteredData}
-            keyExtractor={item => item.id}
+            keyExtractor={(item, index) => `${item.id}+${index}`}
             showsVerticalScrollIndicator={false}
             renderItem={renderItem}
-            onEndReached={handleLoadMore}
+            refreshControl={refreshControl}
+            onEndReachedThreshold={0.1}
+            scrollEventThrottle={16}
           />
         ) : (
           <NotFounded>Not founded</NotFounded>

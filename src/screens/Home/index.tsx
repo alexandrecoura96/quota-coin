@@ -8,17 +8,19 @@ export const Home = () => {
     hasError,
     handleSearch,
     onHandleKeyboardDismiss,
-    handleLoadMore,
     isLoading,
     error,
     onHandleTryAgain,
+    onRefresh,
+    refreshControl,
   } = useHomeViewModel();
   return (
     <View
+      refreshControl={refreshControl}
+      onRefresh={onRefresh}
       onHandleTryAgain={onHandleTryAgain}
       error={error}
       isLoading={isLoading}
-      handleLoadMore={handleLoadMore}
       filteredData={filteredData}
       hasError={hasError}
       handleSearch={handleSearch}

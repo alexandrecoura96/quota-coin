@@ -1,3 +1,4 @@
+import {RefreshControlProps} from 'react-native';
 import {DataType} from '../../models/useGetMarketCoins/types';
 
 export interface HomeViewProps {
@@ -5,8 +6,9 @@ export interface HomeViewProps {
   hasError: boolean | undefined;
   handleSearch: (text: string) => void;
   onHandleKeyboardDismiss: () => void;
-  handleLoadMore: () => void;
   onHandleTryAgain: () => void;
+  onRefresh: () => void;
   isLoading?: boolean;
   error?: boolean;
+  refreshControl?: React.ReactElement<RefreshControlProps> | undefined;
 }

@@ -1,12 +1,12 @@
-import {useCallback, useContext, useState} from 'react';
-import {Keyboard} from 'react-native';
+import React, {useCallback, useContext, useState} from 'react';
+import {Keyboard, RefreshControl} from 'react-native';
 import {DataContext} from '../../components/DataProvider/View';
 
 export const useHomeViewModel = () => {
   const context = useContext(DataContext);
-  const {data, hasError, setPage, isLoading, fetchMarketCoinsList} =
-    context || {};
+  const {data, hasError, isLoading, fetchMarketCoinsList} = context || {};
   const [filteredData, setFilteredData] = useState(data);
+  const [refreshing, setRefreshing] = useState(false);
 
   const handleSearch = useCallback(
     (text: string) => {
@@ -21,10 +21,6 @@ export const useHomeViewModel = () => {
     [data],
   );
 
-  const handleLoadMore = useCallback(() => {
-    setPage && setPage((prevPage: number) => prevPage + 1);
-  }, [setPage]);
-
   const onHandleKeyboardDismiss = useCallback(() => {
     Keyboard.dismiss();
   }, []);
@@ -34,14 +30,26 @@ export const useHomeViewModel = () => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
+  const onRefresh = useCallback(() => {
+    setRefreshing(true);
+    fetchMarketCoinsList &&
+      fetchMarketCoinsList().finally(() => setRefreshing(false));
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
+  const refreshControl = (
+    <RefreshControl refreshing={refreshing} onRefresh={onRefresh} />
+  );
+
   return {
     filteredData,
     hasError,
     handleSearch,
     onHandleKeyboardDismiss,
-    handleLoadMore,
     isLoading,
     error: hasError,
     onHandleTryAgain,
+    onRefresh,
+    refreshControl,
   };
 };
