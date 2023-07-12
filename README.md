@@ -2,7 +2,7 @@
 This is a React Native application that displays currency quotes using the CoinGecko API. With this app, users can get up-to-date information on the quotes of various currencies against the US Dollar (USD).
 
 
-<img src="https://github.com/alexandrecoura96/QuotaCoin/assets/64710438/cff033ba-5bba-42dd-8dab-7cce47567f5e" alt="App Screenshot" width="300" height="600">
+<img src="https://github.com/alexandrecoura96/quota-coin/assets/64710438/310ad0fd-efbb-4348-98d3-db1db5110db0" alt="App Screenshot" width="300" height="600">
 
 
 ## Features:
