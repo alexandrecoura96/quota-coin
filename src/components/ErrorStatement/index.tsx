@@ -1,6 +1,6 @@
 import React from 'react';
+import ErrorIcon from '../../assets/svgs/error.svg';
 import RetryIcon from '../../assets/svgs/retry.svg';
-import ErrorIcon from '../../assets/svgs/secondary_error.svg';
 
 import {Button, ButtonTitle, Container, Title} from './styles';
 import {ErrorStatementProps} from './types';

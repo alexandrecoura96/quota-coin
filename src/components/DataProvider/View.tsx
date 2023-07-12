@@ -5,15 +5,13 @@ import {DataContextValue} from './types';
 const DataContext = createContext<DataContextValue | null>(null);
 
 const DataProvider = ({children}: {children: ReactNode}) => {
-  const {data, loading, hasError, fetchMarketCoinsList, setPage} =
-    useGetMarketCoins();
+  const {data, loading, hasError, fetchMarketCoinsList} = useGetMarketCoins();
 
   const contextValue: DataContextValue = {
     data: data,
     isLoading: loading,
     hasError: hasError,
     fetchMarketCoinsList,
-    setPage: setPage,
   };
 
   useEffect(() => {

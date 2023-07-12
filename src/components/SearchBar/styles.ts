@@ -1,4 +1,5 @@
 import {TextInput} from 'react-native';
+import {RFValue} from 'react-native-responsive-fontsize';
 
 import styled from 'styled-components/native';
 
@@ -15,7 +16,7 @@ export const InputText = styled(TextInput)`
   flex: 1;
   height: 40px;
   padding: 8px 16px 8px 0px;
-  font-size: 16px;
+  font-size: ${RFValue(16)}px;
   line-height: 22px;
   color: #0a0a0a;
   background-color: #eaeaea;

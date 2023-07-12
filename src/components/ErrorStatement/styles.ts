@@ -1,3 +1,4 @@
+import {RFValue} from 'react-native-responsive-fontsize';
 import {styled} from 'styled-components/native';
 
 export const Container = styled.View`
@@ -8,7 +9,7 @@ export const Container = styled.View`
 
 export const Title = styled.Text`
   color: #000;
-  font-size: 20px;
+  font-size: ${RFValue(20)}px;
   font-weight: 500;
 `;
 
@@ -24,5 +25,5 @@ export const Button = styled.TouchableOpacity`
 
 export const ButtonTitle = styled.Text`
   color: #000;
-  font-size: 16px;
+  font-size: ${RFValue(16)}px;
 `;

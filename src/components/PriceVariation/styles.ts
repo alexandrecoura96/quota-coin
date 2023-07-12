@@ -1,3 +1,4 @@
+import {RFValue} from 'react-native-responsive-fontsize';
 import {styled} from 'styled-components/native';
 
 interface VariationType {
@@ -15,4 +16,5 @@ export const Variation = styled.Text.attrs({
   numberOfLines: 1,
 })<VariationType>`
   color: ${props => (props.type === 'negative' ? '#E31B00' : '#00CB00')};
+  font-size: ${RFValue(16)}px;
 `;
