@@ -1,5 +1,6 @@
 import numeral from 'numeral';
 import React, {PureComponent} from 'react';
+import Coin from '../../assets/svgs/coin.svg';
 import {
   Container,
   Content,
@@ -18,14 +19,14 @@ export class CoinListItem extends PureComponent<CoinListItemProps> {
 
     return (
       <Container>
-        <Logo source={{uri: logo}} />
+        {logo ? <Logo source={{uri: logo}} /> : <Coin height={32} width={32} />}
         <Content>
           <PrimaryColumn>
-            <Ticker>{ticker.toUpperCase()}</Ticker>
-            <Name>{name}</Name>
+            <Ticker>{ticker ? ticker.toUpperCase() : '--'}</Ticker>
+            <Name>{name ? name : '--'}</Name>
           </PrimaryColumn>
           <SecondaryColumn>
-            <Price>{numeral(price).format('$0,0.00')}</Price>
+            <Price>{price ? numeral(price).format('$0,0.00') : '--'}</Price>
             {children}
           </SecondaryColumn>
         </Content>

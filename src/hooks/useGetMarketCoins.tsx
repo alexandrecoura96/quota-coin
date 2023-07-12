@@ -27,6 +27,7 @@ export const useGetMarketCoins = () => {
     } catch (error) {
       setLoading(false);
       setHasError(true);
+      throw error; // Lança o erro para que seja tratado na função `onRefresh`
     } finally {
       setLoading(false);
     }

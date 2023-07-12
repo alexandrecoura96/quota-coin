@@ -26,9 +26,9 @@ export class PriceVariation extends PureComponent<PriceVariationProps> {
 
     return (
       <Container>
-        {Icon()[verifyVariation(variation)]}
+        {variation && Icon()[verifyVariation(variation)]}
         <Variation type={verifyVariation(variation)}>
-          {numeral(variation / 100).format('0.00%')}
+          {variation ? numeral(variation / 100).format('0.00%') : '--'}
         </Variation>
       </Container>
     );

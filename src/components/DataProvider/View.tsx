@@ -11,7 +11,7 @@ const DataProvider = ({children}: {children: ReactNode}) => {
     data: data,
     isLoading: loading,
     hasError: hasError,
-    fetchMarketCoinsList,
+    fetchMarketCoinsList: fetchMarketCoinsList,
   };
 
   useEffect(() => {

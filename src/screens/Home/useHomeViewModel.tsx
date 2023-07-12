@@ -1,4 +1,4 @@
-import React, {useCallback, useContext, useState} from 'react';
+import React, {useCallback, useContext, useEffect, useState} from 'react';
 import {Keyboard, RefreshControl} from 'react-native';
 import {DataContext} from '../../components/DataProvider/View';
 
@@ -40,6 +40,10 @@ export const useHomeViewModel = () => {
   const refreshControl = (
     <RefreshControl refreshing={refreshing} onRefresh={onRefresh} />
   );
+
+  useEffect(() => {
+    setFilteredData(data); // Atualiza o estado filteredData com os novos dados
+  }, [data]);
 
   return {
     filteredData,
